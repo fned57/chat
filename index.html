@@ -1,37 +1,51 @@
-<html>
-  <head>
-    <title>Socket.IO chat</title>
+<!DOCTYPE html>
+<html lang="vn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+      li{
+      background-color: #f1eeee;
+      border: 1px solid;
+      display: inline-block;
+      border-radius: 5px;
+      margin: 5px;
+      padding: 4px 8px;
+      }
+    </style>
 
-  </head>
-  <body style="position: relative;">
-    <div >
+</head>
+<body>
+    <div class="container">
       <label for="message" class="h4" style="margin-top: 20px;">Message:</label>
-      <ul id="messages" style="height: 600px; border: solid 1px #cecece; list-style: none;"></ul>
-      <form style="    position: absolute; bottom:0px; width:100%">
-        <div class="form-group">
-          <textarea id="m" class="form-control" rows="5" placeholder="Enter your message" required></textarea>
-        </div>
-        <button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right ">Submit</button>
-      </form>
+        <ul id="messages" style="height: auto; list-style: none;"></ul>
+          <form class="d-flex" style="position: absolute;
+          bottom: 5px ; right:5px">
+            <input type="text" id="m" autocomplete="off" class="form-control" rows="5" placeholder="Enter your message" required style="width:100% ;"/>
+          <button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+          </svg>Gửi</button>
+          </form>
     </div>
     
-    <script src="/socket.io/socket.io.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
+    <script  type="text/javascript">
       $(function () {
-        var socket = io();
-        $('form').submit(function(){
-          socket.emit('chat message', $('#m').val());
-          $('#m').val('');
-          return false;
-        });
-        socket.on('chat message', function(msg){
-          $('#messages').append($('<li>').text(msg));
-        });
-      });
-      
+    var socket = io();
+    $('form').submit(function(){
+      socket.emit('chat message', $('#m').val());
+      $('#m').val('');
+      return false;
+    });
+    socket.on('chat message', function(msg){
+      $('#messages').append($('<li>').text(msg)).append($('<br/>'));
+    });
+  });
     </script>
-  </body>
-</html>
+</body>
+</html> 
