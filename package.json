@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/fned57/chat#readme",
   "dependencies": {
-    "express": "^4.18.1",
-    "soket.io": "^0.0.1-security"
+    "express": "^4.18.1"
   }
 }
