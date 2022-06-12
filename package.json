@@ -1,16 +1,24 @@
 {
-  "name": "chat-example",
+  "name": "chat",
   "version": "1.0.0",
-  "description": "chat-examole",
+  "description": "chat mini",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "ThanhManCi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fned57/chat.git"
+  },
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fned57/chat/issues"
+  },
+  "homepage": "https://github.com/fned57/chat#readme",
   "dependencies": {
-    "express": "^4.15.2",
-    "socket.io": "^2.0.4"
+    "express": "^4.18.1",
+    "soket.io": "^0.0.1-security"
   }
 }
