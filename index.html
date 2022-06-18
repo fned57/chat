@@ -34,34 +34,50 @@
     </style>
 
 </head>
-<body>
+<body style="background-image: url(https://th.bing.com/th/id/R.199b0dd769fbe0a2130fd93cb27af15d?rik=vGf9k0BsiE%2fdXw&pid=ImgRaw&r=0;); background-size: cover;">
     <div class="container">
       <label for="message" class="h4" style="margin-top: 20px;">Message:</label>
-        <ul id="messages" style="overflow-y: auto;bottom: 40px;position: relative;flex-direction: column-reverse;
-        display: flex;"></ul>
-          <form class="d-flex d-flex justify-content-center" style=" position: fixed;
-          bottom:5px;">
+        <ul id="messages" style="overflow-y: scroll;bottom: 40px;    bottom: 40px;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        padding:20px">
+            
+        </ul>
+          <form class="d-flex d-flex justify-content-center" style="position: fixed;bottom:5px;right: 0;left: 0;padding:20px">
             <input type="text" id="m" autocomplete="off" class="form-control" rows="5" placeholder="Enter your message" required style="width:100% ;"/>
           <button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right "><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
             <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
           </svg>Gửi</button>
           </form>
     </div>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
       <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script  type="text/javascript">
+      function end_scroll(id){
+        var objDiv = document.getElementById(id);
+        objDiv.style.height =  window.innerHeight
+        objDiv.scrollTop = objDiv.scrollHeight;
+        
+       
+      }
+      end_scroll('messages')
       $(function () {
+        $('#messages').scrollTop($('#messages').scrollHeight)
     var socket = io();
     $('form').submit(function(){
       socket.emit('chat message', $('#m').val());
       $('#messages').append($('<li class="me">').text($('#m').val()));
       $('#m').val('');
+      end_scroll('messages')
       return false;
     });
 
     socket.on('chat message', function(msg){
       $('#messages').append($('<li>').text(msg));
+      end_scroll('messages')
     });
   });
     </script>
